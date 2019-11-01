@@ -21,9 +21,9 @@ class Chart extends Component{
             this.props.extras
           }
         />
-        <button onClick={() => this.props.onSort(0)}>By days</button>
-        <button onClick={() => this.props.onSort(1)}>By months</button>
-        <button onClick={() => this.props.onSort(2)}>By years</button>
+        <button onClick={() => this.props.onDaySort(0)}>By one day</button>
+        <button onClick={() => this.props.onMonthSort(0)}>By one month</button>
+        <button onClick={() => this.props.onYearSort(0)}>By one year</button>
       </div>
     );
   }
@@ -32,7 +32,9 @@ class Chart extends Component{
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSort: (number) => dispatch({type: 'SORT', payload: number})
+    onDaySort: (number) => dispatch({type: 'DAY_SORT', payload: number}),
+    onMonthSort: (number) => dispatch({type: 'MONTH_SORT', payload: number}),
+    onYearSort: (number) => dispatch({type: 'YEAR_SORT', payload: number})
   }
 }
 

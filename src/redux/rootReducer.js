@@ -1,4 +1,8 @@
-import json from '../components/list'
+import json from '../JsonLocal/list'
+import day from '../JsonLocal/dayParams'
+import month from '../JsonLocal/monthParams'
+import year from '../JsonLocal/yearParams'
+
 
 const initialState = {
   data: json[0].data,
@@ -7,10 +11,20 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch(action.type) {
-    case 'SORT':
+    case 'DAY_SORT':
       return {
-        data: json[action.payload].data,
-        extras: json[action.payload].options
+        data: day[action.payload].data,
+        extras: day[action.payload].options
+      }
+    case 'MONTH_SORT':
+      return {
+        data: month[action.payload].data,
+        extras: month[action.payload].options
+      }
+    case 'YEAR_SORT':
+      return {
+        data: year[action.payload].data,
+        extras: year[action.payload].options
       }
       default: 
       return state
