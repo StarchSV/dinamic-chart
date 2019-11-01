@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Bar} from 'react-chartjs-2';
 import {connect} from 'react-redux'
+import { daySort, monthSort, yearSort, asyncYear } from '../redux/actions/actions';
 
 class Chart extends Component{
   constructor(props) {
@@ -24,6 +25,7 @@ class Chart extends Component{
         <button onClick={() => this.props.onDaySort(0)}>By one day</button>
         <button onClick={() => this.props.onMonthSort(0)}>By one month</button>
         <button onClick={() => this.props.onYearSort(0)}>By one year</button>
+        <button onClick={() => this.props.onAsyncYear(0)}>By one year async</button>
       </div>
     );
   }
@@ -32,9 +34,10 @@ class Chart extends Component{
 
 function mapDispatchToProps(dispatch) {
   return {
-    onDaySort: (number) => dispatch({type: 'DAY_SORT', payload: number}),
-    onMonthSort: (number) => dispatch({type: 'MONTH_SORT', payload: number}),
-    onYearSort: (number) => dispatch({type: 'YEAR_SORT', payload: number})
+    onDaySort: number => dispatch(daySort(number)),
+    onMonthSort: number => dispatch(monthSort(number)),
+    onYearSort: number => dispatch(yearSort(number)),
+    onAsyncYear: number => dispatch(asyncYear(number))
   }
 }
 
