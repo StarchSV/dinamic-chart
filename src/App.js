@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
 import Chart from './components/Chart'
-import list from './components/list'
+import {connect} from 'react-redux'
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      
-    }
-  }
 
- 
   render() {
+    console.log('APP', this.props)
     return (
       <div className="App">
-        <Chart 
-         
+        <Chart
+        data={this.props.data} 
+        extras={this.props.extras}
         />
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    data: state.data,
+    extras: state.extras
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onAdd: () => dispatch({type: 'ADD'}),
+    onSub: () => dispatch({type: 'SUB'})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
